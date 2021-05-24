@@ -1,7 +1,6 @@
 package com.daxue.coreservice.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author daxue0929
@@ -14,5 +13,11 @@ public class Test {
     public boolean health() {
         return true;
     }
+
+    @PostMapping("postStr")
+    public String postRequestTest(@RequestParam String id) {
+        return "我是返回的id:" + id;
+    }
+
 
 }
