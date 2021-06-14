@@ -3,8 +3,10 @@ package com.example.demo.controller;
 import com.example.demo.service.TestRemoteClient;
 import com.example.demo.service.TestService;
 import com.netflix.discovery.EurekaClient;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2021/05/21
  **/
 @RestController
+@Slf4j
 public class Test {
 
 
@@ -54,6 +57,16 @@ public class Test {
     @PostMapping("/fegin2")
     public String postRequestTest(@RequestParam String id) {
         return remoteClient.postRequestTest(id);
+    }
+
+
+    @Value("${test.username}")
+    public String username;
+
+    @GetMapping("/getRemoteUsername")
+    public String remoteConfig() {
+        log.info("remote config username: {}", username);
+        return username;
     }
 
 }

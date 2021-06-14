@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    config:
+      name: demo
+      profile: dev
+      label: master # 当加载的是native文件时,label不起作用
+      enabled: true
+      # uri的配置,是写死了远程配置中心的地址
+      # 和discovery:
+      #        enabled: true
+      #        serviceId: remote-config
+      # 配置是等价的,当把remote-config注册到eureka中的时候,serviceId是remote-config服务的{spring.application.name}
+
+#      uri: http://127.0.0.1:8887
+      discovery:
+        enabled: true
+        serviceId: remote-config
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
